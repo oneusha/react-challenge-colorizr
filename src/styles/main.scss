@@ -1,4 +1,5 @@
-@import 'normalize';
+@import 'reset';
+@import 'menu';
 
 html {
   // simplify rem calculations
@@ -17,14 +18,42 @@ body {
   font-family: 'PT Sans', sans-serif;
 }
 
+html, body {
+  min-height: 100%;
+  position: relative;
+}
+
+.header {
+  padding: 20px 0;
+  background: #fff;
+}
+
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  padding: 20px 0;
+  background: #fff;
+}
+
 .container {
   max-width: 800px;
-  margin-left: auto;
-  margin-right: auto;
+  margin: 0 auto;
+}
+
+.main {
+  min-height: calc(100vh - 150px);
+  padding: 60px 15px;
+  box-shadow: inset 0 0 10px #000;
 }
 
 .title {
   letter-spacing: -1px;
   text-align: center;
   color: #222;
+}
+
+h2 {
+  font-size: 3.2rem;
+  margin-bottom: 0.5rem;
 }

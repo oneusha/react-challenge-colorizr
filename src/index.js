@@ -1,5 +1,25 @@
 import React from 'react';
 import { render } from 'react-dom';
-import App from './App';
+import { Router, Route, hashHistory, IndexRoute, IndexRedirect } from 'react-router';
+import { createStore } from 'redux';
+import { Provider } from 'react-redux';
 
-render(<App />, document.getElementById('app'));
+import App from './App';
+import Create from './containers/Create/Create';
+import Explore from './containers/Explore/Explore';
+
+import configureStore from './store/configureStore';
+
+const store = configureStore();
+
+render((
+	<Provider store={store}>
+		<Router history={hashHistory}>
+			<Route path="/" component={App}>
+				<IndexRedirect to="/create" />
+				<Route path="/create" component={Create} />
+				<Route path="/explore" component={Explore} />
+			</Route>
+		</Router>
+	</Provider>
+), document.getElementById('app'));
