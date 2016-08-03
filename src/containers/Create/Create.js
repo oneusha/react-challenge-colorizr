@@ -2,7 +2,7 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CreateActions from '../../actions/CreateActions';
-import SelectedColors, { DEFAULT_COLOR } from '../../components/SelectedColors/SelectedColors';
+import SelectedColors from '../../components/SelectedColors/SelectedColors';
 import ColorsSource from '../../components/ColorsSource/ColorsSource';
 
 import './create.scss';
@@ -17,23 +17,23 @@ class Create extends Component {
   }
 
   changeColor(e) {
-  	let color = e.target.value;
+    const color = e.target.value;
 
-  	this.props.actions.changeColor(color);
+    this.props.actions.changeColor(color);
   }
 
   removeColor(e) {
-    let index = [].indexOf.call(e.target.parentElement.children, e.target);
-    let colors = [...this.props.colors];
+    const index = [].indexOf.call(e.target.parentElement.children, e.target);
+    const colors = [...this.props.colors];
 
     colors[index] = null;
     this.props.actions.removeColor(colors);
   }
 
   addColor(e) {
-    let index = this.props.colors.indexOf(null);
-    let color = e.target.style.background;
-    let colors = [...this.props.colors];
+    const index = this.props.colors.indexOf(null);
+    const color = e.target.style.background;
+    const colors = [...this.props.colors];
 
     if (index >= 0) {
       colors[index] = color;
@@ -41,18 +41,36 @@ class Create extends Component {
       colors.shift();
       colors.push(color);
     }
-    
+
     this.props.actions.addColor(colors);
   }
 
   render() {
     return (
       <div className="main create" style={{ background: this.props.color }}>
-      	<h1><label htmlFor="mainColor" className="color-button">Choose your color</label></h1>
-		    <input type="color" name="mainColor" className="color-input" id="mainColor" onChange={this.changeColor} />
-        <SelectedColors colors={this.props.colors} removeColor={this.removeColor} />
-        <ColorsSource color={this.props.color} addColor={this.addColor} colors={this.props.colors} />
-        <ColorsSource color={this.props.color} addColor={this.addColor} colors={this.props.colors} />
+        <h1><label htmlFor="mainColor" className="color-button">
+          Choose your color
+        </label></h1>
+        <input
+          type="color"
+          name="mainColor"
+          className="color-input"
+          id="mainColor" onChange={this.changeColor}
+        />
+        <SelectedColors
+          colors={this.props.colors}
+          removeColor={this.removeColor}
+        />
+        <ColorsSource
+          color={this.props.color}
+          addColor={this.addColor}
+          colors={this.props.colors}
+        />
+        <ColorsSource
+          color={this.props.color}
+          addColor={this.addColor}
+          colors={this.props.colors}
+        />
       </div>
     );
   }
@@ -61,14 +79,20 @@ class Create extends Component {
 function mapStateToProps(state) {
   return {
     color: state.create.color,
-    colors: state.create.colors
+    colors: state.create.colors,
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(CreateActions, dispatch)
-  }
+    actions: bindActionCreators(CreateActions, dispatch),
+  };
 }
+
+Create.propTypes = {
+  actions: React.PropTypes.object,
+  colors: React.PropTypes.array,
+  color: React.PropTypes.string,
+};
 
 export default connect(mapStateToProps, mapDispatchToProps)(Create);

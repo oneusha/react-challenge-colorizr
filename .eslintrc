@@ -1,9 +1,12 @@
 {
+  "stage": 0,
   "parserOptions": {
     "ecmaVersion": 6,
     "sourceType": "module",
     "ecmaFeatures": {
-      "jsx": true
+      "jsx": true,
+      "destructuring": true,
+      "experimentalObjectRestSpread": true
     }
   },
   "env": {
