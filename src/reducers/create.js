@@ -1,7 +1,6 @@
 import {
-	CREATE_COLOR_CHANGE,
-	CREATE_REMOVE_COLOR,
-	CREATE_ADD_COLOR } from '../constants/Create';
+	CREATE_CHANGE_MAIN_COLOR,
+	CREATE_CHANGE_COLLETION } from '../constants/Create';
 
 const initialState = {
   color: '#20b2aa',
@@ -10,11 +9,9 @@ const initialState = {
 
 export default function createState(state = initialState, action) {
   switch (action.type) {
-    case CREATE_COLOR_CHANGE:
+    case CREATE_CHANGE_MAIN_COLOR:
       return { ...state, color: action.payload };
-    case CREATE_REMOVE_COLOR:
-      return { ...state, colors: action.payload };
-    case CREATE_ADD_COLOR:
+    case CREATE_CHANGE_COLLETION:
       return { ...state, colors: action.payload };
     default:
       return state;

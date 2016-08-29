@@ -24,11 +24,11 @@ const SelectedColors = ({ colors, removeColor }) => {
 
 SelectedColors.propTypes = {
   removeColor: React.PropTypes.func,
-  colors: React.PropTypes.array,
+  colors: React.PropTypes.array
 };
 
 SelectedColors.defaultProps = {
-  colors: Array(10).fill(null),
+  colors: Array(10).fill(null)
 };
 
 export default SelectedColors;

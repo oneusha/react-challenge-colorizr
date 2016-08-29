@@ -1,26 +1,18 @@
 import {
-  CREATE_COLOR_CHANGE,
-  CREATE_REMOVE_COLOR,
-  CREATE_ADD_COLOR,
+  CREATE_CHANGE_MAIN_COLOR,
+  CREATE_CHANGE_COLLETION
 } from '../constants/Create';
 
-export function changeColor(color) {
+export function changeMainColor(color) {
   return {
-    type: CREATE_COLOR_CHANGE,
-    payload: color,
+    type: CREATE_CHANGE_MAIN_COLOR,
+    payload: color
   };
 }
 
-export function removeColor(colors) {
+export function changeColorCollection(colors) {
   return {
-    type: CREATE_REMOVE_COLOR,
-    payload: colors,
-  };
-}
-
-export function addColor(colors) {
-  return {
-    type: CREATE_ADD_COLOR,
-    payload: colors,
+    type: CREATE_CHANGE_COLLETION,
+    payload: colors
   };
 }

@@ -13,10 +13,11 @@
     "browser": true,
     "node": true
   },
+  "plugins": ["react"],
+  "extends": ["airbnb"],
   "rules": {
     "quotes": [2, "single"],
-    "strict": [2, "never"]
-  },
-  "plugins": ["react"],
-  "extends": ["airbnb"]
+    "strict": [2, "never"],
+    "comma-dangle": ["error", "never"]
+  }
 }

@@ -53,7 +53,7 @@ const ColorsSource = ({ color, addColor, colors }) => {
 ColorsSource.propTypes = {
   addColor: React.PropTypes.func,
   color: React.PropTypes.string,
-  colors: React.PropTypes.array,
+  colors: React.PropTypes.array
 };
 
 export default ColorsSource;

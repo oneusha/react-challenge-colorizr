@@ -19,7 +19,7 @@ class Create extends Component {
   changeColor(e) {
     const color = e.target.value;
 
-    this.props.actions.changeColor(color);
+    this.props.actions.changeMainColor(color);
   }
 
   removeColor(e) {
@@ -27,7 +27,7 @@ class Create extends Component {
     const colors = [...this.props.colors];
 
     colors[index] = null;
-    this.props.actions.removeColor(colors);
+    this.props.actions.changeColorCollection(colors);
   }
 
   addColor(e) {
@@ -42,7 +42,7 @@ class Create extends Component {
       colors.push(color);
     }
 
-    this.props.actions.addColor(colors);
+    this.props.actions.changeColorCollection(colors);
   }
 
   render() {
@@ -79,20 +79,20 @@ class Create extends Component {
 function mapStateToProps(state) {
   return {
     color: state.create.color,
-    colors: state.create.colors,
+    colors: state.create.colors
   };
 }
 
 function mapDispatchToProps(dispatch) {
   return {
-    actions: bindActionCreators(CreateActions, dispatch),
+    actions: bindActionCreators(CreateActions, dispatch)
   };
 }
 
 Create.propTypes = {
   actions: React.PropTypes.object,
   colors: React.PropTypes.array,
-  color: React.PropTypes.string,
+  color: React.PropTypes.string
 };
 
 export default connect(mapStateToProps, mapDispatchToProps)(Create);
