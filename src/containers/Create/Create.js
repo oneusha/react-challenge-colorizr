@@ -2,23 +2,17 @@ import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CreateActions from '../../actions/CreateActions';
+
 import SelectedColors from '../../components/SelectedColors/SelectedColors';
 import ColorsSource from '../../components/ColorsSource/ColorsSource';
+
+import ColorPicker from 'react-color-picker';
+import 'react-color-picker/index.css';
 
 import './create.scss';
 
 class Create extends Component {
-  constructor(props) {
-    super(props);
-
-    this.changeColor = this.changeColor.bind(this);
-    this.removeColor = this.removeColor.bind(this);
-    this.addColor = this.addColor.bind(this);
-  }
-
-  changeColor(e) {
-    const color = e.target.value;
-
+  changeColor(color) {
     this.props.actions.changeMainColor(color);
   }
 
@@ -30,9 +24,12 @@ class Create extends Component {
     this.props.actions.changeColorCollection(colors);
   }
 
-  addColor(e) {
+  removeAll() {
+    this.props.actions.changeColorCollection(Array(10).fill(null));
+  }
+
+  addColor(color) {
     const index = this.props.colors.indexOf(null);
-    const color = e.target.style.background;
     const colors = [...this.props.colors];
 
     if (index >= 0) {
@@ -48,27 +45,20 @@ class Create extends Component {
   render() {
     return (
       <div className="main create" style={{ background: this.props.color }}>
-        <h1><label htmlFor="mainColor" className="color-button">
-          Choose your color
-        </label></h1>
-        <input
-          type="color"
-          name="mainColor"
-          className="color-input"
-          id="mainColor" onChange={this.changeColor}
+        <h1>Choose your color</h1>
+        <ColorPicker
+          defaultValue={this.props.color}
+          onDrag={this.props.actions.changeMainColor}
         />
         <SelectedColors
           colors={this.props.colors}
-          removeColor={this.removeColor}
+          removeColor={::this.removeColor}
         />
         <ColorsSource
+          title="Darker and Lighter"
           color={this.props.color}
-          addColor={this.addColor}
-          colors={this.props.colors}
-        />
-        <ColorsSource
-          color={this.props.color}
-          addColor={this.addColor}
+          addColor={::this.addColor}
+          removeAll={::this.removeAll}
           colors={this.props.colors}
         />
       </div>

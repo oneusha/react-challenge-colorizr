@@ -4,7 +4,7 @@ import {
 
 const initialState = {
   color: '#20b2aa',
-  colors: Array(10).fill(null),
+  colors: Array(10).fill(null)
 };
 
 export default function createState(state = initialState, action) {

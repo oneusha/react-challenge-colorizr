@@ -1,59 +1,79 @@
-import React from 'react';
+import React, { Component } from 'react';
+import tinycolor from 'tinycolor2';
+
 import './style.scss';
 
-function colorLuminance(color, lum = 0) {
-	// validate hex string
-  let hex = String(color).replace(/[^0-9a-f]/gi, '');
-  if (hex.length < 6) {
-    hex = hex[0] + hex[0] + hex[1] + hex[1] + hex[2] + hex[2];
+export default class ColorsSource extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      isBgDark: false
+    };
   }
 
-	// convert to decimal and change luminosity
-  let rgb = '#';
-  let c;
-  let i;
-
-  for (i = 0; i < 3; i++) {
-    c = parseInt(hex.substr(i * 2, 2), 16);
-    c = Math.round(Math.min(Math.max(0, c + (c * lum)), 255)).toString(16);
-    rgb += (`00${c}`).substr(c.length);
+  changeBg() {
+    this.setState({ ...this.state, isBgDark: !this.state.isBgDark });
   }
 
-  return rgb;
-}
+  renderButtons() {
+    const removeAllBtn = this.props.colors.some((i) => i !== null) ?
+      <button onClick={this.props.removeAll}>Remove all</button> : '';
+    const changeBgBtn = (<button onClick={::this.changeBg}>
+      {this.state.isBgDark ? 'Light' : 'Dark'} background
+    </button>);
 
-const ColorsSource = ({ color, addColor, colors }) => {
-  function generateColors() {
-    if (!color) return [];
-
-    return Array(10).fill(color).map((o, index) =>
-      colorLuminance(color, 0.5 - 1 / index)
+    return (
+      <div className="buttons">
+        {changeBgBtn}
+        {removeAllBtn}
+      </div>
     );
   }
 
-  const colorSet = generateColors(color);
-  const items = colorSet.map((item, index) => (
-    <li
-      key={index}
-      className={`color-circle${colors.indexOf(item) < 0 ? ' addable' : ''}`}
-      style={{ background: item }}
-      onClick={item ? addColor : () => false}
-    ></li>
-  ));
+  renderItems() {
+    const generateColors = (currentColor) => {
+      const color = tinycolor(currentColor);
+      const method = color.isDark() ? 'lighten' : 'darken';
+      return this.props.colors.map((o, index) =>
+        tinycolor(currentColor)[method](color.isDark() ? 50 - 50 / 10 * index : 50 / 10 * index).toString()
+      );
+    }
 
-  return (
-    <div className="selected-colors container">
-      <h2>Darker and Lighter</h2>
-      <ul className="color-list">{items}</ul>
-    </div>
-  );
-};
+    const colorSet = generateColors(this.props.color);
+    const items = colorSet.map((item, index) => (
+      <li
+        key={index}
+        className={`color-circle ${this.props.colors.indexOf(item) < 0 ? 'addable' : 'added'}`}
+        style={{ background: item, color: tinycolor(item).spin(90).toString() }}
+        onClick={
+          this.props.colors.indexOf(item) < 0 ? () => {
+            this.props.addColor(item);
+          } : () => false
+        }
+      ></li>
+    ));
 
-// Make ESLint happy again: add validation to props
+    return <ul className="color-list">{items}</ul>;
+  }
+
+  render() {
+    const containerClasses = `selected-colors container ${this.state.isBgDark ? '_dark' : '_light'}`;
+    //const textColor = { color: tinycolor(this.props.mainColor).isDark ? '#fff' : '#000' };
+
+    return (
+      <div className={containerClasses}>
+        <h2>{this.props.title}</h2>
+        {this.renderItems()}
+        {this.renderButtons()}
+      </div>
+    );
+  }
+}
+
 ColorsSource.propTypes = {
   addColor: React.PropTypes.func,
+  removeAll: React.PropTypes.func,
   color: React.PropTypes.string,
   colors: React.PropTypes.array
 };
-
-export default ColorsSource;

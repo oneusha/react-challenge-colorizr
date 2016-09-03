@@ -6,16 +6,17 @@ import { rootReducer } from '../reducers';
 export default function configureStore() {
   const store = compose(
     applyMiddleware(),
-    applyMiddleware()
+    applyMiddleware(),
+    window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore)(rootReducer);
 
-  // if (module.hot) {
+  if (module.hot) {
     // Enable Webpack hot module replacement for reducers
-    // module.hot.accept('../reducers', () => {
-      // const nextRootReducer = require('../reducers').rootReducer
-      // store.replaceReducer(nextRootReducer)
-    // });
-  // }
+    module.hot.accept('../reducers', () => {
+      const nextRootReducer = require('../reducers').rootReducer;
+      store.replaceReducer(nextRootReducer);
+    });
+  }
 
   return store;
 }

@@ -10,7 +10,7 @@ const App = (props) => (
           <img src="/images/logo-dark.svg" alt="Colorizr" width="200" />
         </Link>
         <nav className="menu">
-          <ul area-role="nav">
+          <ul>
             <li className="menu__item">
               <Link
                 className="menu__link"
@@ -45,7 +45,7 @@ const App = (props) => (
 );
 
 App.propTypes = {
-  children: React.PropTypes.object,
+  children: React.PropTypes.object
 };
 
 export default App;
