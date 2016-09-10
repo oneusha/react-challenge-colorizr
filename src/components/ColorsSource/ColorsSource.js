@@ -12,6 +12,13 @@ export default class ColorsSource extends Component {
     };
   }
 
+  static propTypes = {
+    addColor: React.PropTypes.func,
+    removeAll: React.PropTypes.func,
+    color: React.PropTypes.string,
+    colors: React.PropTypes.array
+  }
+
   changeBg() {
     this.setState({ ...this.state, isBgDark: !this.state.isBgDark });
   }
@@ -70,10 +77,3 @@ export default class ColorsSource extends Component {
     );
   }
 }
-
-ColorsSource.propTypes = {
-  addColor: React.PropTypes.func,
-  removeAll: React.PropTypes.func,
-  color: React.PropTypes.string,
-  colors: React.PropTypes.array
-};

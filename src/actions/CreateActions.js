@@ -3,16 +3,12 @@ import {
   CREATE_CHANGE_COLLETION
 } from '../constants/Create';
 
-export function changeMainColor(color) {
-  return {
-    type: CREATE_CHANGE_MAIN_COLOR,
-    payload: color
-  };
-}
+export const changeMainColor = (color) => ({
+  type: CREATE_CHANGE_MAIN_COLOR,
+  payload: color
+});
 
-export function changeColorCollection(colors) {
-  return {
-    type: CREATE_CHANGE_COLLETION,
-    payload: colors
-  };
-}
+export const changeColorCollection = (colors) => ({
+  type: CREATE_CHANGE_COLLETION,
+  payload: colors
+});

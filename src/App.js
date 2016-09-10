@@ -39,6 +39,7 @@ const App = (props) => (
     <footer className="footer">
       <div className="container">
           by Zhelnov Ivan
+          with love
       </div>
     </footer>
   </div>

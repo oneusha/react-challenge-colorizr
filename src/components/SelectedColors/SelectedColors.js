@@ -12,7 +12,6 @@ const SelectedColors = ({ colors, removeColor }) => {
       onClick={item ? removeColor : () => false}
     ></li>
   ));
-
   return (
     <div className="selected-colors container">
       <h2>Select up to ten colors</h2>

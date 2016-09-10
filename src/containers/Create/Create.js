@@ -3,6 +3,7 @@ import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
 import * as CreateActions from '../../actions/CreateActions';
 
+import ColorChooser from '../../components/ColorChooser/index';
 import SelectedColors from '../../components/SelectedColors/SelectedColors';
 import ColorsSource from '../../components/ColorsSource/ColorsSource';
 
@@ -12,6 +13,12 @@ import 'react-color-picker/index.css';
 import './create.scss';
 
 class Create extends Component {
+  static propTypes = {
+    actions: React.PropTypes.object,
+    colors: React.PropTypes.array,
+    color: React.PropTypes.string
+  }
+
   changeColor(color) {
     this.props.actions.changeMainColor(color);
   }
@@ -45,10 +52,10 @@ class Create extends Component {
   render() {
     return (
       <div className="main create" style={{ background: this.props.color }}>
-        <h1>Choose your color</h1>
-        <ColorPicker
-          defaultValue={this.props.color}
-          onDrag={this.props.actions.changeMainColor}
+        <ColorChooser
+          title="Choose your color"
+          color={this.props.color}
+          changeMainColor={this.props.actions.changeMainColor}
         />
         <SelectedColors
           colors={this.props.colors}
@@ -66,23 +73,13 @@ class Create extends Component {
   }
 }
 
-function mapStateToProps(state) {
-  return {
-    color: state.create.color,
-    colors: state.create.colors
-  };
-}
+const mapStateToProps = (state) => ({
+  color: state.create.color,
+  colors: state.create.colors
+});
 
-function mapDispatchToProps(dispatch) {
-  return {
-    actions: bindActionCreators(CreateActions, dispatch)
-  };
-}
-
-Create.propTypes = {
-  actions: React.PropTypes.object,
-  colors: React.PropTypes.array,
-  color: React.PropTypes.string
-};
+const mapDispatchToProps = (dispatch) => ({
+  actions: bindActionCreators(CreateActions, dispatch)
+});
 
 export default connect(mapStateToProps, mapDispatchToProps)(Create);
