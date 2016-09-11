@@ -4,13 +4,12 @@ import { connect } from 'react-redux';
 import * as CreateActions from '../../actions/CreateActions';
 
 import ColorChooser from '../../components/ColorChooser/index';
-import SelectedColors from '../../components/SelectedColors/SelectedColors';
-import ColorsSource from '../../components/ColorsSource/ColorsSource';
+import SelectedColors from '../../components/SelectedColors/index';
+import ColorsSource from '../../components/ColorsSource/index';
 
-import ColorPicker from 'react-color-picker';
 import 'react-color-picker/index.css';
 
-import './create.scss';
+import './style.scss';
 
 class Create extends Component {
   static propTypes = {
