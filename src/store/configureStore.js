@@ -6,7 +6,6 @@ import { rootReducer } from '../reducers';
 export default function configureStore() {
   const store = compose(
     applyMiddleware(),
-    applyMiddleware(),
     window.devToolsExtension ? window.devToolsExtension() : f => f
   )(createStore)(rootReducer);
 

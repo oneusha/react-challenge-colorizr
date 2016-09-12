@@ -9,7 +9,7 @@ const SelectedColors = ({ colors, removeColor }) => {
       key={index}
       className={`color-circle${item ? ' removable' : ''}`}
       style={{ background: item || DEFAULT_COLOR }}
-      onClick={item ? removeColor : () => false}
+      onClick={item ? () => removeColor(item) : () => false}
     ></li>
   ));
   return (

@@ -16,22 +16,21 @@ class Create extends Component {
     actions: React.PropTypes.object,
     colors: React.PropTypes.array,
     color: React.PropTypes.string
-  }
+  };
 
   changeColor(color) {
     this.props.actions.changeMainColor(color);
   }
 
-  removeColor(e) {
-    const index = [].indexOf.call(e.target.parentElement.children, e.target);
+  removeColor(color) {
     const colors = [...this.props.colors];
 
-    colors[index] = null;
+    colors[colors.indexOf(color)] = null;
     this.props.actions.changeColorCollection(colors);
   }
 
   removeAll() {
-    this.props.actions.changeColorCollection(Array(10).fill(null));
+    this.props.actions.changeColorCollection(new Array(10).fill(null));
   }
 
   addColor(color) {
@@ -64,6 +63,7 @@ class Create extends Component {
           title="Darker and Lighter"
           color={this.props.color}
           addColor={::this.addColor}
+          removeColor={::this.removeColor}
           removeAll={::this.removeAll}
           colors={this.props.colors}
         />

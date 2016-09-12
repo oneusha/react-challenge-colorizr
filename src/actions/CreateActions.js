@@ -1,7 +1,5 @@
-import {
-  CREATE_CHANGE_MAIN_COLOR,
-  CREATE_CHANGE_COLLETION
-} from '../constants/Create';
+export const CREATE_CHANGE_MAIN_COLOR = 'CREATE_CHANGE_MAIN_COLOR';
+export const CREATE_CHANGE_COLLECTION = 'CREATE_CHANGE_COLLECTION';
 
 export const changeMainColor = (color) => ({
   type: CREATE_CHANGE_MAIN_COLOR,
@@ -9,6 +7,6 @@ export const changeMainColor = (color) => ({
 });
 
 export const changeColorCollection = (colors) => ({
-  type: CREATE_CHANGE_COLLETION,
+  type: CREATE_CHANGE_COLLECTION,
   payload: colors
 });

@@ -17,7 +17,7 @@ export default class ColorsSource extends Component {
     removeAll: React.PropTypes.func,
     color: React.PropTypes.string,
     colors: React.PropTypes.array
-  }
+  };
 
   changeBg() {
     this.setState({ ...this.state, isBgDark: !this.state.isBgDark });
@@ -43,20 +43,21 @@ export default class ColorsSource extends Component {
       const color = tinycolor(currentColor);
       const method = color.isDark() ? 'lighten' : 'darken';
       return this.props.colors.map((o, index) =>
-        tinycolor(currentColor)[method](color.isDark() ? 50 - 50 / 10 * index : 50 / 10 * index).toString()
+        tinycolor(currentColor)[method]((color.isDark() ? 50 : 0) - 50 / 10 * index).toString()
       );
-    }
+    };
 
     const colorSet = generateColors(this.props.color);
     const items = colorSet.map((item, index) => (
       <li
         key={index}
         className={`color-circle ${this.props.colors.indexOf(item) < 0 ? 'addable' : 'added'}`}
-        style={{ background: item, color: tinycolor(item).spin(90).toString() }}
-        onClick={
-          this.props.colors.indexOf(item) < 0 ? () => {
-            this.props.addColor(item);
-          } : () => false
+        style={{ background: item, color: tinycolor(item).isDark() ? '#fff' : '#000'}}
+        onClick={() => {
+            this.props.colors.indexOf(item) < 0 ?
+              this.props.addColor(item) :
+              this.props.removeColor(item);
+          }
         }
       ></li>
     ));
@@ -66,7 +67,6 @@ export default class ColorsSource extends Component {
 
   render() {
     const containerClasses = `selected-colors container ${this.state.isBgDark ? '_dark' : '_light'}`;
-    //const textColor = { color: tinycolor(this.props.mainColor).isDark ? '#fff' : '#000' };
 
     return (
       <div className={containerClasses}>
