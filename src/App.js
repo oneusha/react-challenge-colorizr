@@ -2,7 +2,7 @@ import React from 'react';
 import { Link } from 'react-router';
 import './styles/main.scss';
 
-const App = (props) => (
+const App = ({ children }) => (
   <div>
     <header className="header">
       <div className="container">
@@ -34,12 +34,11 @@ const App = (props) => (
       </div>
     </header>
 
-    {props.children}
+    {children}
 
     <footer className="footer">
       <div className="container">
           by Zhelnov Ivan
-          with love
       </div>
     </footer>
   </div>

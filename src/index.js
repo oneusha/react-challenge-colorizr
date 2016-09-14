@@ -4,8 +4,8 @@ import { Router, Route, hashHistory, IndexRedirect } from 'react-router';
 import { Provider } from 'react-redux';
 
 import App from './App';
-import Create from './containers/Create/index';
-import Explore from './containers/Explore/index';
+import Create from './containers/Create';
+import Explore from './containers/Explore';
 
 import configureStore from './store/configureStore';
 

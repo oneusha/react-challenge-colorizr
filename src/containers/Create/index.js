@@ -1,11 +1,12 @@
 import React, { Component } from 'react';
 import { bindActionCreators } from 'redux';
 import { connect } from 'react-redux';
-import * as CreateActions from '../../actions/CreateActions';
+import * as collectionActions from '../../actions/collection';
+import * as mainColorActions from '../../actions/mainColor';
 
-import ColorChooser from '../../components/ColorChooser/index';
-import SelectedColors from '../../components/SelectedColors/index';
-import ColorsSource from '../../components/ColorsSource/index';
+import ColorChooser from '../../components/ColorChooser';
+import SelectedColors from '../../components/SelectedColors';
+import ColorsSource from '../../components/ColorsSource';
 
 import 'react-color-picker/index.css';
 
@@ -13,72 +14,46 @@ import './style.scss';
 
 class Create extends Component {
   static propTypes = {
-    actions: React.PropTypes.object,
-    colors: React.PropTypes.array,
-    color: React.PropTypes.string
+    collectionActions: React.PropTypes.object,
+    mainColorActions: React.PropTypes.object,
+    collection: React.PropTypes.array,
+    mainColor: React.PropTypes.string
   };
-
-  changeColor(color) {
-    this.props.actions.changeMainColor(color);
-  }
-
-  removeColor(color) {
-    const colors = [...this.props.colors];
-
-    colors[colors.indexOf(color)] = null;
-    this.props.actions.changeColorCollection(colors);
-  }
-
-  removeAll() {
-    this.props.actions.changeColorCollection(new Array(10).fill(null));
-  }
-
-  addColor(color) {
-    const index = this.props.colors.indexOf(null);
-    const colors = [...this.props.colors];
-
-    if (index >= 0) {
-      colors[index] = color;
-    } else {
-      colors.shift();
-      colors.push(color);
-    }
-
-    this.props.actions.changeColorCollection(colors);
-  }
 
   render() {
     return (
-      <div className="main create" style={{ background: this.props.color }}>
+      <div className="main create" style={{ background: this.props.mainColor }}>
         <ColorChooser
           title="Choose your color"
-          color={this.props.color}
-          changeMainColor={this.props.actions.changeMainColor}
+          color={this.props.mainColor}
+          changeMainColor={this.props.mainColorActions.changeMainColor}
         />
         <SelectedColors
-          colors={this.props.colors}
-          removeColor={::this.removeColor}
+          collection={this.props.collection}
+          removeColor={this.props.collectionActions.removeColor}
         />
         <ColorsSource
           title="Darker and Lighter"
-          color={this.props.color}
-          addColor={::this.addColor}
-          removeColor={::this.removeColor}
-          removeAll={::this.removeAll}
-          colors={this.props.colors}
+          mainColor={this.props.mainColor}
+          addColor={this.props.collectionActions.addColor}
+          removeColor={this.props.collectionActions.removeColor}
+          removeAllColors={this.props.collectionActions.removeAllColors}
+          addAllColors={this.props.collectionActions.addAllColors}
+          collection={this.props.collection}
         />
       </div>
     );
   }
 }
 
-const mapStateToProps = (state) => ({
-  color: state.create.color,
-  colors: state.create.colors
+const mapStateToProps = state => ({
+  mainColor: state.mainColor.mainColor,
+  collection: state.collection.collection
 });
 
-const mapDispatchToProps = (dispatch) => ({
-  actions: bindActionCreators(CreateActions, dispatch)
+const mapDispatchToProps = dispatch => ({
+  collectionActions: bindActionCreators(collectionActions, dispatch),
+  mainColorActions: bindActionCreators(mainColorActions, dispatch)
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Create);

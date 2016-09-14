@@ -1,14 +1,16 @@
 import React from 'react';
+import invertColor from '../../utils/invertColor';
+
 import './style.scss';
 
 const DEFAULT_COLOR = '#ededed';
 
-const SelectedColors = ({ colors, removeColor }) => {
-  let items = colors.map((item, index) => (
+const SelectedColors = ({ collection, removeColor }) => {
+  let items = collection.map((item, index) => (
     <li
       key={index}
       className={`color-circle${item ? ' removable' : ''}`}
-      style={{ background: item || DEFAULT_COLOR }}
+      style={{ background: item || DEFAULT_COLOR, color: invertColor(item) }}
       onClick={item ? () => removeColor(item) : () => false}
     ></li>
   ));
@@ -23,11 +25,11 @@ const SelectedColors = ({ colors, removeColor }) => {
 
 SelectedColors.propTypes = {
   removeColor: React.PropTypes.func,
-  colors: React.PropTypes.array
+  collection: React.PropTypes.array
 };
 
 SelectedColors.defaultProps = {
-  colors: Array(10).fill(null)
+  collection: Array(10).fill(null)
 };
 
 export default SelectedColors;

@@ -1,6 +1,8 @@
 import { combineReducers } from 'redux';
-import create from './create';
+import collection from './collection';
+import mainColor from './mainColor';
 
 export const rootReducer = combineReducers({
-  create
+  collection,
+  mainColor
 });
