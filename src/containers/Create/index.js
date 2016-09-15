@@ -21,25 +21,26 @@ class Create extends Component {
   };
 
   render() {
+    const props = this.props;
     return (
-      <div className="main create" style={{ background: this.props.mainColor }}>
+      <div className="main create" style={{ background: props.mainColor }}>
         <ColorChooser
           title="Choose your color"
-          color={this.props.mainColor}
-          changeMainColor={this.props.mainColorActions.changeMainColor}
+          color={props.mainColor}
+          changeMainColor={props.mainColorActions.changeMainColor}
         />
         <SelectedColors
-          collection={this.props.collection}
-          removeColor={this.props.collectionActions.removeColor}
+          collection={props.collection}
+          removeColor={props.collectionActions.removeColor}
         />
         <ColorsSource
           title="Darker and Lighter"
-          mainColor={this.props.mainColor}
-          addColor={this.props.collectionActions.addColor}
-          removeColor={this.props.collectionActions.removeColor}
-          removeAllColors={this.props.collectionActions.removeAllColors}
-          addAllColors={this.props.collectionActions.addAllColors}
-          collection={this.props.collection}
+          mainColor={props.mainColor}
+          addColor={props.collectionActions.addColor}
+          removeColor={props.collectionActions.removeColor}
+          removeAllColors={props.collectionActions.removeAllColors}
+          addAllColors={props.collectionActions.addAllColors}
+          collection={props.collection}
         />
       </div>
     );

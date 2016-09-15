@@ -1,10 +1,7 @@
-import {
-  CHANGE_MAIN_COLOR
-} from '../actions/mainColor';
+import { CHANGE_MAIN_COLOR } from '../actions/mainColor';
+import { DEFAULT_MAIN_COLOR } from '../config/constants';
 
-const initialState = {
-  mainColor: '#20b2aa'
-};
+const initialState = { mainColor: DEFAULT_MAIN_COLOR };
 
 export default function mainColor(state = initialState, action) {
   switch (action.type) {

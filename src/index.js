@@ -7,7 +7,7 @@ import App from './App';
 import Create from './containers/Create';
 import Explore from './containers/Explore';
 
-import configureStore from './store/configureStore';
+import configureStore from './config/configureStore';
 
 const store = configureStore();
 
