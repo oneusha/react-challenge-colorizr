@@ -1,28 +1,28 @@
 .menu {
-	float: right;
+  float: right;
 
-	&__item {
-		display: inline-block;
-		margin: 10px 5px 0 5px;
-		list-style: none;
+  &__item {
+    display: inline-block;
+    margin: 10px 5px 0 5px;
+    list-style: none;
 
-		.menu__link {
-			display: block;
-			padding: 5px 10px;
-			border: 1px solid transparent;
-			border-radius: 8px 0;
-			text-decoration: none;
+    .menu__link {
+      display: block;
+      padding: 5px 10px;
+      border: 1px solid transparent;
+      border-radius: 8px 0;
+      text-decoration: none;
 
-			&--active {
-				background: orange;
-				color: #ffffff;
-			}
-		}
+      &--active {
+        background: orange;
+        color: #ffffff;
+      }
+    }
 
-		&:hover {
-			.menu__link {
-				border: 1px solid orange;
-			}
-		}
-	}
+    &:hover {
+      .menu__link {
+        border: 1px solid orange;
+      }
+    }
+  }
 }

@@ -1,61 +1,61 @@
 .selected-colors {
-	background: #fff;
-	margin: 30px auto;
-	padding: 30px;
-	box-shadow: 0 0 10px #000;
+  background: #fff;
+  margin: 30px auto;
+  padding: 30px;
+  box-shadow: 0 0 10px #000;
 
-	text-align: left;
+  text-align: left;
 
-	.color-list {
-		margin: 15px 0;
-	}
+  .color-list {
+    margin: 15px 0;
+  }
 
-	.color-circle {
-		position: relative;
-		display: inline-block;
-		width: 60px;
-		height: 60px;
-		margin-right: 10px;
-		list-style: none;
-		border-radius: 50%;
-		cursor: pointer;
-		transition: background ease 0.3s;
+  .color-circle {
+    position: relative;
+    display: inline-block;
+    width: 60px;
+    height: 60px;
+    margin-right: 10px;
+    list-style: none;
+    border-radius: 50%;
+    cursor: pointer;
+    transition: background ease 0.3s;
 
-		&.removable::after {
-			opacity: 0;
-			content: '❌';
-			line-height: 20px;
-			position: absolute;
-			top: 50%;
-			margin-top: -10px;
-			width: 60px;
-			height: 20px;
-			text-align: center;
-			font-weight: bold;
-			transition: opacity ease 0.3s;
-		}
+    &.removable::after {
+      opacity: 0;
+      content: '❌';
+      line-height: 20px;
+      position: absolute;
+      top: 50%;
+      margin-top: -10px;
+      width: 60px;
+      height: 20px;
+      text-align: center;
+      font-weight: bold;
+      transition: opacity ease 0.3s;
+    }
 
-		&.removable:hover::after {
-			opacity: 1;
-		}
+    &.removable:hover::after {
+      opacity: 1;
+    }
 
-		&.addable::after {
-			opacity: 0;
-			content: '+';
-			line-height: 20px;
-			position: absolute;
-			top: 50%;
-			margin-top: -10px;
-			width: 60px;
-			height: 20px;
-			text-align: center;
-			font-weight: bold;
-			font-size: 30px;
-			transition: opacity ease 0.3s;
-		}
+    &.addable::after {
+      opacity: 0;
+      content: '+';
+      line-height: 20px;
+      position: absolute;
+      top: 50%;
+      margin-top: -10px;
+      width: 60px;
+      height: 20px;
+      text-align: center;
+      font-weight: bold;
+      font-size: 30px;
+      transition: opacity ease 0.3s;
+    }
 
-		&.addable:hover::after {
-			opacity: 1;
-		}
-	}
+    &.addable:hover::after {
+      opacity: 1;
+    }
+  }
 }
