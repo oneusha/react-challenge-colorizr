@@ -57,3 +57,39 @@ h2 {
   font-size: 3.2rem;
   margin-bottom: 0.5rem;
 }
+
+.btn {
+  background: #fff;
+  border: 2px solid #424242;
+  padding: 8px 10px;
+  cursor: pointer;
+  transition: opacity ease 0.3s;
+
+  &_red {
+    background: #d9534f;
+    border-color: #d9534f;
+    color: #ffffff;
+  }
+
+  &_green {
+    background: #449d44;
+    border-color: #419641;
+    color: #ffffff;
+  }
+
+  & + & {
+    margin-left: 10px;
+  }
+
+  &:hover {
+    opacity: 0.8;
+  }
+
+  &[disabled] {
+    cursor: not-allowed;
+
+    &.btn_red {
+      opacity: 0.65;
+    }
+  }
+}

@@ -6,4 +6,4 @@ export const ADD_ALL_COLORS = 'ADD_ALL_COLORS';
 export const removeColor = color => ({ type: REMOVE_COLOR, color });
 export const addColor = color => ({ type: ADD_COLOR, color });
 export const removeAllColors = () => ({ type: REMOVE_ALL_COLORS });
-export const addAllColors = () => ({ type: ADD_ALL_COLORS });
+export const addAllColors = colors => ({ type: ADD_ALL_COLORS, colors });

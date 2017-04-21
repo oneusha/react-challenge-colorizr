@@ -1,12 +1,12 @@
 import { CHANGE_MAIN_COLOR } from '../actions/mainColor';
-import { DEFAULT_MAIN_COLOR } from '../config/constants';
+import tinycolor from 'tinycolor2';
 
-const initialState = { mainColor: DEFAULT_MAIN_COLOR };
+const initialState = { mainColor: tinycolor.random().toString() };
 
 export default function mainColor(state = initialState, action) {
   switch (action.type) {
     case CHANGE_MAIN_COLOR:
-      return { ...state, mainColor: action.color };
+      return { mainColor: action.color };
     default:
       return state;
   }
